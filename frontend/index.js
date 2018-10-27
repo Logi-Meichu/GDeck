@@ -21,7 +21,7 @@ const createGrids = ($page) => {
         $grid.appendChild($imgWrapper);
         
         const $icon = document.createElement('img');
-        $icon.src = `${$page.pageid}-${i}`;
+        $icon.src = `${$page.pageid}-${i}.png`;
         $imgWrapper.appendChild($icon);
         
         $page.appendChild($grid);
