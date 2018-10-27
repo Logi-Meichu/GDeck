@@ -67,9 +67,9 @@ END_MESSAGE_MAP()
 
 // CMFCSampleDlg message handlers
 
-LRESULT CMFCSampleDlg::OnGetDefID(WPARAM wp, LPARAM lp) 
+LRESULT CMFCSampleDlg::OnGetDefID(WPARAM wp, LPARAM lp)
 {
-  return MAKELONG(0,DC_HASDEFID); 
+  return MAKELONG(0,DC_HASDEFID);
 }
 
 BOOL CMFCSampleDlg::OnInitDialog()
@@ -218,7 +218,7 @@ void CMFCSampleDlg::OutputDebugStringAndErrorCode(wchar_t *string, bool outputMe
 	wchar_t errorStr[128];
 	switch(lastError)
 	{
-	case 0: 
+	case 0:
 		{
 			wsprintf(errorStr,L"SUCCESS");
 		}
@@ -322,7 +322,7 @@ void CMFCSampleDlg::OnBnClickedButtonInit()
 			m_statusLabel.SetWindowText(L"Connected");
 		}
 	}
-	
+
 }
 
 void CMFCSampleDlg::OnBnClickedButtonFileFromPath()
@@ -372,7 +372,7 @@ std::vector<BYTE> CMFCSampleDlg::ReadAllBytes(char const* filename)
 	std::ifstream::pos_type pos = ifs.tellg();
 
 	std::vector<BYTE>  result(pos);
-	
+
 	ifs.seekg(0, std::ios::beg);
 	ifs.read((char *)&result[0], pos);
 
@@ -385,7 +385,7 @@ void CMFCSampleDlg::OnBnClickedButtonFileFromContent()
 	//Use this function if you have an asset in memory. In this example we just load in memory an existing file
 	wchar_t ffsFC[MAX_PATH];
 	m_fileNameFfc.GetWindowText(ffsFC, MAX_PATH);
-	
+
 	std::vector<BYTE> contentVector = ReadAllBytes("Resources//g700.jpg");
 	if(contentVector.size() > 0)
 	{
@@ -401,8 +401,8 @@ void CMFCSampleDlg::OnBnClickedButtonFileFromContent()
 		}
 	}
 
-	
-	
+
+
 
 }
 
@@ -474,7 +474,7 @@ void CMFCSampleDlg::OnBnClickedButtonUpdateContent()
 			OutputDebugStringAndErrorCode(L"Could not update content", true);
 		}
 	}
-	
+
 }
 
 
