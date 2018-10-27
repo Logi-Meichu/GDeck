@@ -28,7 +28,8 @@ const createGrids = ($page) => {
         $grid.appendChild($imgWrapper);
         
         const $icon = document.createElement('img');
-        $icon.src = `${$page[0].pageid}-${i}.png`;
+        $icon.src = `${$page[0].pageid}-${i}.png?v=${Math.random()}`;
+        $icon.className = 'ico'
         $imgWrapper.appendChild($icon);
         
         $page[1].appendChild($grid);
