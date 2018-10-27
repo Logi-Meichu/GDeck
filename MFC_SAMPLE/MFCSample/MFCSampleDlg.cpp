@@ -139,6 +139,10 @@ HCURSOR CMFCSampleDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void call_obs(const char* argv) {
+	WinExec((LPCSTR)(string("C:\\Users\\Kevin\\AppData\\Local\\Programs\\Python\\Python36\\python.exe obs.py ") + argv).c_str(), SW_HIDE);
+}
+
 LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 {
 	arxAppCallbackMessage *callbackMessageStruct = reinterpret_cast<arxAppCallbackMessage*> (wParam);
@@ -191,27 +195,27 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 				string tag_id = string(wtag_id.begin(), wtag_id.end());
 				if(tag_id == "page-0-grid-0")
 				{
-					system("python obs.py StartRecording");
+					call_obs("StartRecording");
 				}
 				if(tag_id == "page-0-grid-1")
 				{
-					system("python obs.py StopRecording");
+					call_obs("StopRecording");
 				}
 				if(tag_id == "page-0-grid-2")
 				{
-					system("python obs.py SetSceneItemPosition scene camera 0 0");
+					call_obs("SetSceneItemPosition scene camera 0 0");
 				}
 				if(tag_id == "page-0-grid-3")
 				{
-					system("python3 obs.py DecVolume s1");
+					call_obs("DecVolume s1");
 				}
 				if(tag_id == "page-0-grid-4")
 				{
-					system("python3 obs.py ToggleMute s1");
+					call_obs("ToggleMute s1");
 				}
 				if(tag_id == "page-0-grid-5")
 				{
-					system("python3 obs.py IncVolume s1");
+					call_obs("IncVolume s1");
 				}
 
 				if(tag_id == "page-1-grid-0")
