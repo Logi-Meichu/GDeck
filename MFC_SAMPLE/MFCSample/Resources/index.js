@@ -76,3 +76,11 @@ $scrolldown.addEventListener('click', function() {
     $scrollup.className = $scrollup.className.replace('disabled', '');
     curPage += 1;
 });
+
+const $screenshot = document.getElementById('screenshot');
+$screenshot.src = 'screenshot.png';
+// $screenshot.src = 'https://cdn.newsapi.com.au/image/v1/9fdbf585d17c95f7a31ccacdb6466af9';
+$screenshot.addEventListener('error', function() {
+    console.log('error');
+    this.style = 'display: none';
+});
