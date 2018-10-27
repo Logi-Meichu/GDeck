@@ -79,7 +79,33 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 40vw;
+    height: 22.5vw;
+    z-index: 5;
+    transition: all .5s ease-in-out;
+}
+
+.sc-drop {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 17vw;
+    left: 15vw;
+    background: #adb2ba;
+    opacity: .7;
+    width: 10vw;
+    height: 5vw;
+    transition: all .5s ease-in-out;
     z-index: 3;
+    border-radius: 50px;
+}
+
+.sc-drop.active {
+    transform: translateY(6vw);
+}
+
+.sc {
+    font-size: 33px;
+    cursor: pointer;
 }
