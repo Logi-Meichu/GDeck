@@ -398,7 +398,7 @@ void CMFCSampleDlg::OnBnClickedButtonFileFromScreenShot()
 	if(contentVector.size() > 0)
 	{
 		BYTE *content = &contentVector[0];
-		if(!LogiArxAddContentAs(content, contentVector.size(),  ffsFC, L"image/jpeg"))
+		if(!LogiArxAddContentAs(content, contentVector.size(),  L"screenshot.jpg", L"image/jpeg"))
 		{
 			OutputDebugStringAndErrorCode(L"Could not send file", true);
 		}
