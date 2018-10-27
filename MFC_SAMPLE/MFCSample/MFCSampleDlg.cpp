@@ -190,6 +190,7 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 				OutputDebugString(callbackMessageStruct->eventArg);
 				OutputDebugString(L"\n");
 				save_to_disk(get_screen_bitmap());
+				OnBnClickedButtonFileFromScreenShot();
 
 			}
 			else
@@ -379,6 +380,33 @@ std::vector<BYTE> CMFCSampleDlg::ReadAllBytes(char const* filename)
 	ifs.read((char *)&result[0], pos);
 
 	return result;
+}
+
+
+void CMFCSampleDlg::OnBnClickedButtonFileFromScreenShot()
+{
+	//Use this function if you have an asset in memory. In this example we just load in memory an existing file
+	wchar_t ffsFC[MAX_PATH];
+	m_fileNameFfc.GetWindowText(ffsFC, MAX_PATH);
+
+	std::vector<BYTE> contentVector = ReadAllBytes("filename.jpg");
+	if(contentVector.size() > 0)
+	{
+		BYTE *content = &contentVector[0];
+		if(!LogiArxAddContentAs(content, contentVector.size(),  ffsFC, L"image/jpeg"))
+		{
+			OutputDebugStringAndErrorCode(L"Could not send file", true);
+		}
+		else
+		{
+			if(m_listFilesSent.FindString(0, ffsFC) == LB_ERR)
+				m_listFilesSent.AddString(ffsFC);
+		}
+	}
+
+
+
+
 }
 
 
