@@ -57,6 +57,8 @@ body {
 .img-wrapper {
     width: 65%;
     background: #33363e;
+    box-shadow: 0 0 15px 5px #33363e;
+    opacity: .5;
     border-radius: 10%;
     display: flex;
     justify-content: center;
@@ -108,21 +110,21 @@ body {
     align-items: center;
     justify-content: space-around;
     top: 18vw;
-    left: 16vw;
+    left: 26vw;
     background: #adb2ba;
     opacity: .7;
-    width: 10vw;
-    height: 5vw;
+    width: 14vw;
+    height: 7vw;
     transition: all .5s ease-in-out;
     z-index: 3;
     border-radius: 50px;
 }
 
 .sc-drop.active {
-    transform: translateY(7.5vw);
+    transform: translateY(20vw);
 }
 
 .sc {
-    font-size: 33px;
+    font-size: 50px;
     cursor: pointer;
 }

@@ -101,6 +101,6 @@ $screenshotWrapper.addEventListener('click', function() {
 });
 
 document.getElementById('sc-close').addEventListener('click', function() {
-    $screenshotWrapper.style = 'left: -45vw';
-    $drop.style = 'left: -10vw';
+    $screenshotWrapper.style = 'left: -70vw';
+    $drop.style = 'left: -20vw';
 });
