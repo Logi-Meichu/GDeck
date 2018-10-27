@@ -84,22 +84,22 @@ $scrolldown.addEventListener('click', function() {
     curPage += 1;
 });
 
+const $screenshotWrapper = document.getElementById('screenshot-wrapper');
 const $screenshot = document.getElementById('screenshot');
 $screenshot.src = `screenshot.jpg?v=${Math.random()}`;
 const $drop = document.getElementsByClassName('sc-drop')[0];
 
 $screenshot.addEventListener('error', function() {
     console.log('error');
-    this.style = 'display: none';
+    $screenshotWrapper.style = 'display: none';
     $drop.style = 'display: none';
 });
 
-
-$screenshot.addEventListener('click', function() {
+$screenshotWrapper.addEventListener('click', function() {
     $drop.className = `${$drop.className} active`;
 });
 
 document.getElementById('sc-close').addEventListener('click', function() {
-    $screenshot.style = 'left: -40vw';
+    $screenshotWrapper.style = 'left: -45vw';
     $drop.style = 'left: -10vw';
 });
