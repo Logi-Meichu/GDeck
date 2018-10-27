@@ -17,6 +17,7 @@ const createGrids = ($page) => {
         $grid.className = `grid grid-${i}`;
         
         const $imgWrapper = document.createElement('div');
+        $imgWrapper.id = `page-${$page.pageid}-grid-${i}`;
         $imgWrapper.className = 'img-wrapper';
         $grid.appendChild($imgWrapper);
         
