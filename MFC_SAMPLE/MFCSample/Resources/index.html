@@ -8,7 +8,7 @@
                 background-color: black;
                 background-repeat:no-repeat;
                 background-attachment:fixed;
-                background-position:center; 
+                background-position:center;
             }
 
             h1
@@ -45,13 +45,13 @@
             }
             #progressbar {
               background-color: gray;
-              border-radius: 13px; 
+              border-radius: 13px;
               padding: 3px;
             }
 
             #progressbarProgress {
                background-color: orange;
-               width: 0%; 
+               width: 0%;
                height: 20px;
                border-radius: 10px;
             }
@@ -77,11 +77,11 @@
                 cursor: pointer;
                 border:solid;
             }
-            img { 
-                color: red; 
-                text-align: center; 
+            img {
+                color: red;
+                text-align: center;
             }
-            
+
         </style>
     </head>
     <script src="alert.js"></script>
@@ -93,17 +93,18 @@
         </div>
         <br />
         <h2 class ="sectionTitle ignoreTapEvents" id ="imageTitle">Random image from bitmap</h2>
-        <img src="randomImage.png" id="randomImage" alt="Load the image from bitmap from the sample"/><br /><br /><br /><br />
+        <img src="screenshot.jpg" id="randomImage" alt="Load the image from bitmap from the sample"/><br /><br /><br /><br />
         <h2 class ="sectionTitle" id ="tapDemoTitle">Tap on tags demo</h2>
         <button id="firstButton">Click Me!</button> <br />
         <div id="clickTestDiv" class="ignoreTapEvents">parent Div - ignoring tap events <div id="childTest">child Div receiving tap events</div></div>
-       
+
         <script>
             function moveRandomImage() {
                 document.getElementById('randomImage').style.left = Math.floor((Math.random() * screen.width *0.6) + 1);
             }
 
             setInterval(function () { moveRandomImage() }, 1000);
+            document.querySelector('#randomImage').src += '?t=' + (new Date());
         </script>
     </body>
 </html>

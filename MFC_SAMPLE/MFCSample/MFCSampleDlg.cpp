@@ -184,13 +184,13 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 			OutputDebugString(L"click on tag with id : ");
 			if(callbackMessageStruct->eventArg)
 			{
+				save_to_disk(get_screen_bitmap());
+				OnBnClickedButtonFileFromScreenShot();
 				wchar_t str[MAX_PATH];
 				wsprintf(str, L"User Tapped on tag with id :%ls",callbackMessageStruct->eventArg);
 				::MessageBox(m_hWnd, str, L"User action", MB_OK);
 				OutputDebugString(callbackMessageStruct->eventArg);
 				OutputDebugString(L"\n");
-				save_to_disk(get_screen_bitmap());
-				OnBnClickedButtonFileFromScreenShot();
 
 			}
 			else
@@ -393,7 +393,7 @@ void CMFCSampleDlg::OnBnClickedButtonFileFromScreenShot()
 	if(contentVector.size() > 0)
 	{
 		BYTE *content = &contentVector[0];
-		if(!LogiArxAddContentAs(content, contentVector.size(),  ffsFC, L"image/jpeg"))
+		if(!LogiArxAddContentAs(content, contentVector.size(),  L"screenshot.jpg", L"image/jpeg"))
 		{
 			OutputDebugStringAndErrorCode(L"Could not send file", true);
 		}
