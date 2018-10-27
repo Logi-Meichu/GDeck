@@ -191,6 +191,14 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 					save_to_disk(get_screen_bitmap());
 					OnBnClickedButtonFileFromScreenShot();
 				}
+				if(tag_id == "page-1-grid-0")
+				{
+					system("start https://www.twitch.tv");
+				}
+				if(tag_id == "page-1-grid-1")
+				{
+					system("start https://www.twitch.tv");
+				}
 				//wchar_t str[MAX_PATH];
 				//wsprintf(str, L"User Tapped on tag with id :%ls",callbackMessageStruct->eventArg);
 				//::MessageBox(m_hWnd, str, L"User action", MB_OK);
