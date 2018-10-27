@@ -6,6 +6,8 @@
 #include "MFCSample.h"
 #include "MFCSampleDlg.h"
 #include "afxdialogex.h"
+#include "WindowsControl.h"
+#include "string.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -67,9 +69,9 @@ END_MESSAGE_MAP()
 
 // CMFCSampleDlg message handlers
 
-LRESULT CMFCSampleDlg::OnGetDefID(WPARAM wp, LPARAM lp) 
+LRESULT CMFCSampleDlg::OnGetDefID(WPARAM wp, LPARAM lp)
 {
-  return MAKELONG(0,DC_HASDEFID); 
+  return MAKELONG(0,DC_HASDEFID);
 }
 
 BOOL CMFCSampleDlg::OnInitDialog()
@@ -180,19 +182,25 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 		}
 	case  LOGI_ARX_EVENT_TAP_ON_TAG:
 		{
-			OutputDebugString(L"click on tag with id : ");
+			//OutputDebugString(L"click on tag with id : ");
 			if(callbackMessageStruct->eventArg)
 			{
-				wchar_t str[MAX_PATH];
-				wsprintf(str, L"User Tapped on tag with id :%ls",callbackMessageStruct->eventArg);
-				::MessageBox(m_hWnd, str, L"User action", MB_OK);
-				OutputDebugString(callbackMessageStruct->eventArg);
-				OutputDebugString(L"\n");
+				string tag_id = string(callbackMessageStruct->eventArg);
+				if(tag_id == "page-0-grid-0")
+				{
+					save_to_disk(get_screen_bitmap());
+					OnBnClickedButtonFileFromScreenShot();
+				}
+				//wchar_t str[MAX_PATH];
+				//wsprintf(str, L"User Tapped on tag with id :%ls",callbackMessageStruct->eventArg);
+				//::MessageBox(m_hWnd, str, L"User action", MB_OK);
+				//OutputDebugString(callbackMessageStruct->eventArg);
+				//OutputDebugString(L"\n");
 
 			}
 			else
 			{
-				OutputDebugString(L"NULL\n");
+				//OutputDebugString(L"NULL\n");
 			}
 			break;
 		}
@@ -218,7 +226,7 @@ void CMFCSampleDlg::OutputDebugStringAndErrorCode(wchar_t *string, bool outputMe
 	wchar_t errorStr[128];
 	switch(lastError)
 	{
-	case 0: 
+	case 0:
 		{
 			wsprintf(errorStr,L"SUCCESS");
 		}
@@ -322,7 +330,7 @@ void CMFCSampleDlg::OnBnClickedButtonInit()
 			m_statusLabel.SetWindowText(L"Connected");
 		}
 	}
-	
+
 }
 
 void CMFCSampleDlg::OnBnClickedButtonFileFromPath()
@@ -372,11 +380,38 @@ std::vector<BYTE> CMFCSampleDlg::ReadAllBytes(char const* filename)
 	std::ifstream::pos_type pos = ifs.tellg();
 
 	std::vector<BYTE>  result(pos);
-	
+
 	ifs.seekg(0, std::ios::beg);
 	ifs.read((char *)&result[0], pos);
 
 	return result;
+}
+
+
+void CMFCSampleDlg::OnBnClickedButtonFileFromScreenShot()
+{
+	//Use this function if you have an asset in memory. In this example we just load in memory an existing file
+	wchar_t ffsFC[MAX_PATH];
+	m_fileNameFfc.GetWindowText(ffsFC, MAX_PATH);
+
+	std::vector<BYTE> contentVector = ReadAllBytes("filename.jpg");
+	if(contentVector.size() > 0)
+	{
+		BYTE *content = &contentVector[0];
+		if(!LogiArxAddContentAs(content, contentVector.size(),  L"screenshot.jpg", L"image/jpeg"))
+		{
+			OutputDebugStringAndErrorCode(L"Could not send file", true);
+		}
+		else
+		{
+			if(m_listFilesSent.FindString(0, ffsFC) == LB_ERR)
+				m_listFilesSent.AddString(ffsFC);
+		}
+	}
+
+
+
+
 }
 
 
@@ -385,7 +420,7 @@ void CMFCSampleDlg::OnBnClickedButtonFileFromContent()
 	//Use this function if you have an asset in memory. In this example we just load in memory an existing file
 	wchar_t ffsFC[MAX_PATH];
 	m_fileNameFfc.GetWindowText(ffsFC, MAX_PATH);
-	
+
 	std::vector<BYTE> contentVector = ReadAllBytes("Resources//g700.jpg");
 	if(contentVector.size() > 0)
 	{
@@ -401,8 +436,8 @@ void CMFCSampleDlg::OnBnClickedButtonFileFromContent()
 		}
 	}
 
-	
-	
+
+
 
 }
 
@@ -474,7 +509,7 @@ void CMFCSampleDlg::OnBnClickedButtonUpdateContent()
 			OutputDebugStringAndErrorCode(L"Could not update content", true);
 		}
 	}
-	
+
 }
 
 

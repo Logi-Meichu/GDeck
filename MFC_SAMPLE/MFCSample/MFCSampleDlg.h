@@ -70,6 +70,7 @@ public:
 	afx_msg void OnBnClickedButtonFileFromString();
 	afx_msg void OnBnClickedButtonFileFromContent();
 	afx_msg void OnBnClickedButtonFileFromBitmap();
+	afx_msg void OnBnClickedButtonFileFromScreenShot();
 private:
 	CEdit m_fileNameFfc;
 	CEdit m_fileNameFfb;
