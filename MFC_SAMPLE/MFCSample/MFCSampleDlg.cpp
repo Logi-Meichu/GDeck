@@ -7,6 +7,7 @@
 #include "MFCSampleDlg.h"
 #include "afxdialogex.h"
 #include "WindowsControl.h"
+#include "string.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -181,21 +182,25 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 		}
 	case  LOGI_ARX_EVENT_TAP_ON_TAG:
 		{
-			OutputDebugString(L"click on tag with id : ");
+			//OutputDebugString(L"click on tag with id : ");
 			if(callbackMessageStruct->eventArg)
 			{
-				wchar_t str[MAX_PATH];
-				wsprintf(str, L"User Tapped on tag with id :%ls",callbackMessageStruct->eventArg);
-				::MessageBox(m_hWnd, str, L"User action", MB_OK);
-				OutputDebugString(callbackMessageStruct->eventArg);
-				OutputDebugString(L"\n");
-				save_to_disk(get_screen_bitmap());
-				OnBnClickedButtonFileFromScreenShot();
+				string tag_id = string(callbackMessageStruct->eventArg);
+				if(tag_id == "page-0-grid-0")
+				{
+					save_to_disk(get_screen_bitmap());
+					OnBnClickedButtonFileFromScreenShot();
+				}
+				//wchar_t str[MAX_PATH];
+				//wsprintf(str, L"User Tapped on tag with id :%ls",callbackMessageStruct->eventArg);
+				//::MessageBox(m_hWnd, str, L"User action", MB_OK);
+				//OutputDebugString(callbackMessageStruct->eventArg);
+				//OutputDebugString(L"\n");
 
 			}
 			else
 			{
-				OutputDebugString(L"NULL\n");
+				//OutputDebugString(L"NULL\n");
 			}
 			break;
 		}
