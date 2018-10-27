@@ -7,7 +7,9 @@
 #include "MFCSampleDlg.h"
 #include "afxdialogex.h"
 #include "WindowsControl.h"
-#include "string.h"
+#include <string>
+
+using namespace std;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -185,19 +187,49 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 			//OutputDebugString(L"click on tag with id : ");
 			if(callbackMessageStruct->eventArg)
 			{
-				string tag_id = string(callbackMessageStruct->eventArg);
+				wstring wtag_id = callbackMessageStruct->eventArg;
+				string tag_id = string(wtag_id.begin(), wtag_id.end());
 				if(tag_id == "page-0-grid-0")
+				{
+					system("python obs.py StartRecording");
+				}
+				if(tag_id == "page-0-grid-1")
+				{
+					system("python obs.py StopRecording");
+				}
+				if(tag_id == "page-0-grid-2")
+				{
+					system("python obs.py SetSceneItemPosition scene camera 0 0");
+				}
+				if(tag_id == "page-0-grid-3")
+				{
+					system("python3 obs.py DecVolume s1");
+				}
+				if(tag_id == "page-0-grid-4")
+				{
+					system("python3 obs.py ToggleMute s1");
+				}
+				if(tag_id == "page-0-grid-5")
+				{
+					system("python3 obs.py IncVolume s1");
+				}
+
+				if(tag_id == "page-1-grid-0")
 				{
 					save_to_disk(get_screen_bitmap());
 					OnBnClickedButtonFileFromScreenShot();
 				}
-				if(tag_id == "page-1-grid-0")
-				{
-					system("start https://www.twitch.tv");
-				}
 				if(tag_id == "page-1-grid-1")
 				{
 					system("start https://www.twitch.tv");
+				}
+				if(tag_id == "page-1-grid-2")
+				{
+					system("start https://www.youtube.com/?gl=TW&hl=zh-tw");
+				}
+				if(tag_id == "page-1-grid-3")
+				{
+					system("start https://www.netflix.com/tw-en/");
 				}
 				//wchar_t str[MAX_PATH];
 				//wsprintf(str, L"User Tapped on tag with id :%ls",callbackMessageStruct->eventArg);
