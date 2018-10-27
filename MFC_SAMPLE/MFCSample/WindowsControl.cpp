@@ -1,10 +1,13 @@
+#include "stdafx.h"
 #include "WindowsControl.h"
 #include <string>
+
+using namespace std;
 
 HBITMAP get_screen_bitmap()
 {
 	// get the device context of the screen
-	HDC hScreenDC = CreateDC("DISPLAY", NULL, NULL, NULL);
+	HDC hScreenDC = CreateDC(L"DISPLAY", NULL, NULL, NULL);
 	// and a device context to put it in
 	HDC hMemoryDC = CreateCompatibleDC(hScreenDC);
 
@@ -32,13 +35,13 @@ HBITMAP get_screen_bitmap()
 void save_to_disk(HBITMAP bmp)
 {
 
-	CHAR mypicturespath[256];
+	wchar_t mypicturespath[256];
 	HRESULT result = SHGetFolderPath(NULL, CSIDL_MYPICTURES, NULL, SHGFP_TYPE_CURRENT, mypicturespath);
 
-	string path(mypicturespath, "\\", "filename.jpg");
+	//string path({mypicturespath, "\\", "filename.jpg" });
 
 	CImage image;
 	image.Attach(bmp);
-	image.Save(path);
+	image.Save(L"filename.jpg");
 }
 

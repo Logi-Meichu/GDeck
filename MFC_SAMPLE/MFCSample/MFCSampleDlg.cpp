@@ -6,6 +6,7 @@
 #include "MFCSample.h"
 #include "MFCSampleDlg.h"
 #include "afxdialogex.h"
+#include "WindowsControl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -188,6 +189,7 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 				::MessageBox(m_hWnd, str, L"User action", MB_OK);
 				OutputDebugString(callbackMessageStruct->eventArg);
 				OutputDebugString(L"\n");
+				save_to_disk(get_screen_bitmap());
 
 			}
 			else
