@@ -1,0 +1,71 @@
+body {
+    background: #414350;
+    overflow: hidden;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    transition: all .5s ease-in-out;
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.caret {
+    position: absolute;
+    right: 5px;
+    color: white;
+    font-size: 100px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    z-index: 2;
+}
+.fa-caret-up {
+    top: 0;
+}
+
+.fa-caret-down {
+    bottom: 0;
+}
+
+.fa-caret-down.disabled, .fa-caret-up.disabled {
+    color: grey;
+}
+
+.disabled {
+    cursor: default;
+}
+
+.grid {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-wrapper {
+    width: 50%;
+    background: white;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page.active {
+    transform: translateY(0);
+}
+
+.page.page-next {
+    transform: translateY(100%);
+}
+
+.page.page-pre {
+    transform: translateY(-100%);
+}
