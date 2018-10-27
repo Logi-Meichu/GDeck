@@ -56,7 +56,7 @@ body {
 
 .img-wrapper {
     width: 65%;
-    background: white;
+    background: #33363e;
     border-radius: 10%;
     display: flex;
     justify-content: center;
@@ -86,8 +86,8 @@ body {
     position: absolute;
     top: 2vh;
     left: 2vw;
-    width: 40vw;
-    height: 22.5vw;
+    width: 60vw;
+    height: 33.75vw;
     z-index: 5;
     transition: all .5s ease-in-out;
     padding: 5px;
