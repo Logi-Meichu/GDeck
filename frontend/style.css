@@ -12,6 +12,11 @@ body {
     color: white;
     transition: all .5s ease-in-out;
 
+}
+
+.page-container {
+    width: 80%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -43,7 +48,7 @@ body {
 }
 
 .grid {
-    width: 25%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,5 +81,5 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 2;
+    z-index: 3;
 }
