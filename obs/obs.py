@@ -59,7 +59,7 @@ class OBS(object):
         arg = []
         arg.append(args[1])
         arg.append(float(args[2]))
-        arg.append(float(args[2]))
+        arg.append(float(args[3]))
         arg.append(args[0])
         return self.ws.call(requests.SetSceneItemPosition(*arg))
 
