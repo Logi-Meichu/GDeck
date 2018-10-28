@@ -55,6 +55,7 @@ body {
 }
 
 .img-wrapper {
+    position: relative;
     width: 65%;
     background: #33363e;
     box-shadow: 0 0 15px 5px #33363e;
@@ -66,10 +67,45 @@ body {
     cursor: pointer;
 }
 
+.click-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 1;
+    border: 0px solid white;
+}
+
+.click-ring.active {
+    animation: ring .4s ease-in-out;
+}
+
+@keyframes ring {
+    0% { 
+        border-width: 0;
+        width: 0;
+        height: 0;
+    }
+    40% {
+        border-width: 100px;
+        width: 0;
+        height: 0;
+    }
+    100% {
+        border-width: 0;
+        width: 150%;
+        height: 150%;
+    }
+}
+
 .ico {
     width: 90%;
     height: 90%;
     border-radius: 10px;
+    z-index: 2;
 }
 
 .page.active {
@@ -115,7 +151,7 @@ body {
     opacity: .7;
     width: 14vw;
     height: 7vw;
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
     z-index: 3;
     border-radius: 50px;
 }

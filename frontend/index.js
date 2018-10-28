@@ -26,6 +26,10 @@ const createGrids = ($page) => {
         $imgWrapper.id = `page-${$page[0].pageid}-grid-${i}`;
         $imgWrapper.className = 'img-wrapper';
         $grid.appendChild($imgWrapper);
+
+        const $clickRing = document.createElement('div');
+        $clickRing.className = 'click-ring';
+        $imgWrapper.appendChild($clickRing);
         
         const $icon = document.createElement('img');
         $icon.src = `https://people.cs.nctu.edu.tw/~wctsai1130/gdeck/${$page[0].pageid}-${i}.png?v=${Math.random()}`;
@@ -35,6 +39,13 @@ const createGrids = ($page) => {
         $page[1].appendChild($grid);
 
         $imgWrapper.style = `height: ${$imgWrapper.clientWidth}px`;
+
+        $icon.addEventListener('click', function() {
+            $clickRing.className = `${$clickRing.className} active`;
+            setTimeout(() => {
+                $clickRing.className = $clickRing.className.replace('active', '');
+            }, 400);
+        });
     });
 }
 
