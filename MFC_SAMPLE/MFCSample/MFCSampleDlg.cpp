@@ -142,7 +142,7 @@ HCURSOR CMFCSampleDlg::OnQueryDragIcon()
 void call_obs(const char* argv) {
 	WinExec((LPCSTR)(string("C:\\Users\\Kevin\\AppData\\Local\\Programs\\Python\\Python36\\python.exe obs.py ") + argv).c_str(), SW_HIDE);
 }
-
+int camera = 0;
 LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 {
 	arxAppCallbackMessage *callbackMessageStruct = reinterpret_cast<arxAppCallbackMessage*> (wParam);
@@ -203,7 +203,29 @@ LRESULT CMFCSampleDlg::OnCallbackReport(WPARAM wParam, LPARAM lParam)
 				}
 				if(tag_id == "page-0-grid-2")
 				{
-					call_obs("SetSceneItemPosition scene camera 0 0");
+					switch (camera) {
+					case 0:
+						call_obs("SetSceneItemPosition scene camera 0 0");
+						camera++;
+						break;
+					case 1:
+						call_obs("SetSceneItemPosition scene camera 1500 0");
+						camera++;
+						break;
+					case 2:
+						call_obs("SetSceneItemPosition scene camera 1500 700");
+						camera++;
+						break;
+					case 3:
+						call_obs("SetSceneItemPosition scene camera 0 700");
+						camera = 0;
+						break;
+					default:
+						call_obs("SetSceneItemPosition scene camera 0 0");
+						camera = 0;
+						break;
+					}
+					
 				}
 				if(tag_id == "page-0-grid-3")
 				{
