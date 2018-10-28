@@ -89,18 +89,25 @@ const $screenshotWrapper = document.getElementById('screenshot-wrapper');
 const $screenshot = document.getElementById('screenshot');
 $screenshot.src = `screenshot.jpg?v=${Math.random()}`;
 const $drop = document.getElementsByClassName('sc-drop')[0];
+const $sharedrop = document.getElementsByClassName('sc-share-drop')[0];
 
 $screenshot.addEventListener('error', function() {
     console.log('error');
     $screenshotWrapper.style = 'display: none';
     $drop.style = 'display: none';
+    $sharedrop.style = 'display: none';
 });
 
 $screenshotWrapper.addEventListener('click', function() {
     $drop.className = `${$drop.className} active`;
 });
 
+document.getElementById('sc-share').addEventListener('click', function() {
+    $sharedrop.className = `${$sharedrop.className} active`;
+});
+
 document.getElementById('sc-close').addEventListener('click', function() {
     $screenshotWrapper.style = 'left: -70vw';
     $drop.style = 'left: -20vw';
+    $sharedrop.style = 'left: -20vw';
 });

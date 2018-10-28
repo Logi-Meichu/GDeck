@@ -7,11 +7,11 @@ const createPages = () => {
         $div.className = `page page-${i} ${i === 0 ? 'active' : 'page-next'}`;
         $div.pageid = i;
         $body.appendChild($div);
-
+        
         const $container = document.createElement('div');
         $container.className = 'page-container';
         $div.appendChild($container);
-
+        
 
         return [$div, $container];
     });
@@ -21,17 +21,17 @@ const createGrids = ($page) => {
     [...Array(6).keys()].forEach((i) => {
         const $grid = document.createElement('div');
         $grid.className = `grid grid-${i}`;
-
+        
         const $imgWrapper = document.createElement('div');
         $imgWrapper.id = `page-${$page[0].pageid}-grid-${i}`;
         $imgWrapper.className = 'img-wrapper';
         $grid.appendChild($imgWrapper);
-
+        
         const $icon = document.createElement('img');
-        $icon.src = `https://people.cs.nctu.edu.tw/~wctsai1130/gdeck/${$page[0].pageid}-${i}.png?v=${Math.random()}`;
+        $icon.src = `${$page[0].pageid}-${i}.png?v=${Math.random()}`;
         $icon.className = 'ico'
         $imgWrapper.appendChild($icon);
-
+        
         $page[1].appendChild($grid);
 
         $imgWrapper.style = `height: ${$imgWrapper.clientWidth}px`;
@@ -89,18 +89,25 @@ const $screenshotWrapper = document.getElementById('screenshot-wrapper');
 const $screenshot = document.getElementById('screenshot');
 $screenshot.src = `screenshot.jpg?v=${Math.random()}`;
 const $drop = document.getElementsByClassName('sc-drop')[0];
+const $sharedrop = document.getElementsByClassName('sc-share-drop')[0];
 
 $screenshot.addEventListener('error', function() {
     console.log('error');
     $screenshotWrapper.style = 'display: none';
     $drop.style = 'display: none';
+    $sharedrop.style = 'display: none';
 });
 
 $screenshotWrapper.addEventListener('click', function() {
     $drop.className = `${$drop.className} active`;
 });
 
+document.getElementById('sc-share').addEventListener('click', function() {
+    $sharedrop.className = `${$sharedrop.className} active`;
+});
+
 document.getElementById('sc-close').addEventListener('click', function() {
     $screenshotWrapper.style = 'left: -70vw';
     $drop.style = 'left: -20vw';
+    $sharedrop.style = 'left: -20vw';
 });

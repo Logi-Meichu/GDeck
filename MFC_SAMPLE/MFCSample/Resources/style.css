@@ -59,7 +59,7 @@ body {
     background: #33363e;
     box-shadow: 0 0 15px 5px #33363e;
     opacity: .5;
-    border-radius: 10%;
+    border-radius: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,4 +127,26 @@ body {
 .sc {
     font-size: 50px;
     cursor: pointer;
+}
+
+.sc-share-drop {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 46vw;
+    left: 22vw;
+    background: #adb2ba;
+    opacity: 0;
+    width: 14vw;
+    height: 7vw;
+    transition: all .5s ease-in-out;
+    z-index: 3;
+    border-radius: 20px;
+    transform: translateY(-30%);
+}
+
+.sc-share-drop.active {
+    transform: translateY(0);
+    opacity: 1;
 }
